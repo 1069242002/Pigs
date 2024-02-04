@@ -1,38 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      text-align: center;
-      font-size: 24px;
-      padding-top: 100px;
-      animation: blink 1s infinite;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universo do Amor</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
+        .space {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: stars 20s infinite linear;
+        }
 
-    .hidden {
-      display: none;
-    }
-  </style>
+        @keyframes stars {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            animation: twinkle 1s infinite alternate;
+        }
+
+        .star.yellow {
+            background: #f1c40f; /* Amarela */
+        }
+
+        .star.red {
+            background: #e74c3c; /* Vermelha */
+        }
+
+        .star.orange {
+            background: #e67e22; /* Laranja */
+        }
+
+        .star.green {
+            background: #2ecc71; /* Verde */
+        }
+
+        .star.blue {
+            background: #3498db; /* Azul */
+        }
+
+        .star.white {
+            background: #ecf0f1; /* Branca */
+        }
+
+        @keyframes twinkle {
+            to {
+                opacity: 0.7;
+            }
+        }
+
+        /* Coração pulsante */
+        .heart-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart {
+            color: #e74c3c;
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite alternate ease-in-out;
+            opacity: 1;
+        }
+
+        @keyframes heartbeat {
+            to {
+                transform: scale(1.2);
+                color: #c0392b;
+            }
+        }
+
+        /* Texto dinâmico */
+        .text-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 3s forwards, slideDown 1s ease-in-out 4s forwards, fadeInInMyLife 1s ease-in-out 6s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes fadeInInMyLife {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="question">Abraão é o lindo?</div>
-  <div id="answer" class="hidden">Não!</div>
+    <div class="space" id="space"></div>
 
-  <script>
-    setTimeout(function() {
-      document.getElementById('question').classList.add('hidden');
-      document.getElementById('answer').classList.remove('hidden');
-    }, 3000);
-  </script>
+    <div class="heart-container">
+        <div class="heart">&hearts;</div>
+    </div>
+
+    <script>
+        // Adiciona estrelas dinamicamente usando JavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+            const space = document.getElementById("space");
+
+            const colors = ["yellow", "red", "orange", "green", "blue", "white"];
+
+            for (let i = 0; i < 500; i++) { // Aumentei o número de estrelas para cobrir mais o fundo
+                const star = document.createElement("div");
+                star.classList.add("star");
+                star.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                space.appendChild(star);
+            }
+        });
+    </script>
 </body>
 </html>
