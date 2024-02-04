@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding-top: 100px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="question">Abraão é o lindo?</div>
+  <div id="answer" class="hidden">Não!</div>
+
+  <script>
+    setTimeout(function() {
+      document.getElementById('question').classList.add('hidden');
+      document.getElementById('answer').classList.remove('hidden');
+    }, 3000);
+  </script>
+</body>
+</html>
